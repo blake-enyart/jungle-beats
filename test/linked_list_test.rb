@@ -95,7 +95,26 @@ class LinkedListTest < Minitest::Test
     @linked_list.prepend('suu')
     actual = @linked_list.to_string
 
-    assert_equal 'dop doop deep', actual
+    assert_equal 'suu doop deep', actual
+  end
+
+  def test_insert_method
+    assert_equal '', @linked_list.to_string
+
+    @linked_list.append('doop')
+    actual = @linked_list.to_string
+
+    assert_equal 'doop', actual
+
+    @linked_list.append('deep')
+    actual = @linked_list.to_string
+
+    assert_equal 'doop deep', actual
+
+    @linked_list.insert(1, 'suu')
+    actual = @linked_list.to_string
+
+    assert_equal 'doop suu deep', actual
   end
 end
 
