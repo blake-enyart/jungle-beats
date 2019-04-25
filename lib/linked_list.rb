@@ -42,13 +42,29 @@ class LinkedList
   end
 
   def insert(location, data)
+    return 'Location out of range' if location > count
     node = Node.new(data)
     prior_node = node_at(head, location - 1)
     next_node = node_at(head, location)
     prior_node.next_node = node
     node.next_node = next_node
-    return node
-    node_at(location, node)
+    node
+  end
+
+  def find(location, amount)
+    node = node_at(head, location)
+    return string_starter(node) if amount == 1
+
+    counter = 0
+    string = ''
+
+    until counter == amount
+      string << node.data + ' '
+      node = node.next_node
+      counter += 1
+    end
+    string = string.strip
+    string
   end
 
   private
@@ -63,8 +79,8 @@ class LinkedList
     count_node(node.next_node, counter += 1)
   end
 
-  def string_starter
-    head.data
+  def string_starter(node=head)
+    node.data
   end
 
   def stringify_node(node, string_starter)

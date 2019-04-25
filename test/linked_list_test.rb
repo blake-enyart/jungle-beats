@@ -125,23 +125,47 @@ class LinkedListTest < Minitest::Test
 
     assert_equal 'doop suu deep', actual
   end
+
+  def test_sad_path_insert_method
+    assert_equal '', @linked_list.to_string
+
+    actual = @linked_list.insert(2, 'doop')
+
+    assert_equal 'Location out of range', actual
+  end
+
+  def test_find_method
+    @linked_list.append('deep')
+    @linked_list.append('woo')
+    @linked_list.append('shi')
+    @linked_list.append('shu')
+    @linked_list.append('blop')
+
+    actual = @linked_list.find(2,1)
+    expected = 'shi'
+
+    assert_equal expected, actual
+
+    actual = @linked_list.find(1,3)
+    expected = 'woo shi shu'
+
+    assert_equal expected, actual
+  end
 end
 
-# > require "./lib/linked_list"
-# > list = LinkedList.new
-# > list.append("plop")
-# => "plop"
 # > list.to_string
-# => "plop"
-# > list.append("suu")
-# => "suu"
-# > list.prepend("dop")
-# => "dop"
+# => "deep woo shi shu blop"
+# > list.find(2, 1)
+# => "shi"
+# > list.find(1, 3)
+# => "woo shi shu"
+# > list.includes?("deep")
+# => true
+# > list.includes?("dep")
+# => false
+# > list.pop
+# => "blop"
+# > list.pop
+# => "shu"
 # > list.to_string
-# => "dop plop suu"
-# > list.count
-# => 3
-# > list.insert(1, "woo")
-# => "woo"
-# list.to_string
-# => "dop woo plop suu"
+# => "deep woo shi"
