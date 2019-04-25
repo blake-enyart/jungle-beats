@@ -38,7 +38,6 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_to_string_method
-
     assert_nil @linked_list.to_string
 
     @linked_list.append('doop')

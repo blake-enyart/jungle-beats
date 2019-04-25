@@ -11,8 +11,16 @@ class LinkedList
   end
 
   def count
-    @head.count if @head
+    array = []
+    if @head
+      array << @head
+      array.count
+    else
+      0
+    end
   end
 
-
+  def to_string
+    @head.data if @head
+  end
 end
