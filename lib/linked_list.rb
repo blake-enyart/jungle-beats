@@ -35,7 +35,10 @@ class LinkedList
     stringify_node(self.head, string_starter)
   end
 
-  def prepend
+  def prepend(data)
+    node = Node.new(data)
+    node.next_node = head
+    self.head = node
   end
 
   private
