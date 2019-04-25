@@ -67,6 +67,11 @@ class LinkedList
     string
   end
 
+  def includes?(data)
+    string = self.to_string
+    string.include?(data)
+  end
+
   private
 
   def node_at(node, location, counter= 0)
