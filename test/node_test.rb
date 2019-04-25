@@ -10,4 +10,10 @@ class NodeTest < Minitest::Test
 
     assert_instance_of Node, @node
   end
+
+  def test_attr_return_correctly
+
+    assert_equal 'plop', @node.data
+    assert_nil @node.next_node
+  end
 end
