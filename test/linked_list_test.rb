@@ -34,10 +34,17 @@ class LinkedListTest < Minitest::Test
     assert_equal 'doop', @linked_list.head.data
     assert_instance_of Node, @linked_list.head.next_node
     assert_equal 'deep', @linked_list.head.next_node.data
+
+    actual = @linked_list.append('dop')
+
+    assert_equal 'dop', actual
+    assert_instance_of Node, @linked_list.head
+    assert_equal 'doop', @linked_list.head.data
+    assert_instance_of Node, @linked_list.head.next_node.next_node
+    assert_equal 'dop', @linked_list.head.next_node.next_node.data
   end
 
   def test_count_method
-
     assert_equal 0, @linked_list.count
 
     @linked_list.append('doop')
@@ -47,10 +54,14 @@ class LinkedListTest < Minitest::Test
     @linked_list.append('deep')
 
     assert_equal 2, @linked_list.count
+
+    @linked_list.append('dop')
+
+    assert_equal 3, @linked_list.count
   end
 
   def test_to_string_method
-    assert_nil @linked_list.to_string
+    assert_equal '', @linked_list.to_string
 
     @linked_list.append('doop')
     actual = @linked_list.to_string
@@ -61,18 +72,48 @@ class LinkedListTest < Minitest::Test
     actual = @linked_list.to_string
 
     assert_equal 'doop deep', actual
+
+    @linked_list.append('dop')
+    actual = @linked_list.to_string
+
+    assert_equal 'doop deep dop', actual
+  end
+
+  def test_prepend_method
+    assert_equal '', @linked_list.to_string
+
+    @linked_list.append('doop')
+    actual = @linked_list.to_string
+
+    assert_equal 'doop', actual
+
+    @linked_list.append('deep')
+    actual = @linked_list.to_string
+
+    assert_equal 'doop deep', actual
+
+    @linked_list.prepend('suu')
+    actual = @linked_list.to_string
+
+    assert_equal 'dop doop deep', actual
   end
 end
 
-# > list.head
-# => nil
-# > list.append("doop")
-# => "doop"
-# > list
-# => <LinkedList head=<Node data="doop" next_node=nil #5678904567890> #45678904567>
-# > list.head.next_node
-# => nil
-# > list.count
-# => 1
+# > require "./lib/linked_list"
+# > list = LinkedList.new
+# > list.append("plop")
+# => "plop"
 # > list.to_string
-# => "doop"
+# => "plop"
+# > list.append("suu")
+# => "suu"
+# > list.prepend("dop")
+# => "dop"
+# > list.to_string
+# => "dop plop suu"
+# > list.count
+# => 3
+# > list.insert(1, "woo")
+# => "woo"
+# list.to_string
+# => "dop woo plop suu"

@@ -1,38 +1,56 @@
 class LinkedList
-  attr_reader :head
+  attr_accessor :head
 
   def initialize
     @head = nil
-    @node_array = []
+  end
+
+  def last_node(node)
+    return node if node.tail?
+    last_node(node.next_node)
+  end
+
+  def empty?
+    head.nil?
   end
 
   def append(data)
-    if !@head
-      @head = Node.new(data)
+    node = Node.new(data)
+    if empty?
+      self.head = node
     else
-      @head.next_node = Node.new(data)
+      last_node(@head).next_node = node
     end
     data
   end
 
   def count
-    if @head && !@head.next_node
-      @node_array << @head
-      @node_array.count
-    elsif @head && @head.next_node
-      @node_array << [@head, @head.next_node]
-      @node_array.count
-    else
-      0
-    end
+    return 0 if empty?
+    count_node(head, 1)
   end
 
   def to_string
-    string = ''
-    if @head && !@head.next_node
-      string << @head.data
-    elsif @head && @head.next_node
-      string << @head.data + ' ' + @head.next_node.data
-    end
+    return '' if empty?
+    return string_starter if head.tail?
+    stringify_node(self.head, string_starter)
+  end
+
+  def prepend
+  end
+
+  private
+
+  def count_node(node, counter)
+    return counter if node.tail?
+    count_node(node.next_node, counter += 1)
+  end
+
+  def string_starter
+    head.data
+  end
+
+  def stringify_node(node, string_starter)
+    return string_starter if node.tail?
+    stringify_node(node.next_node, string_starter + ' ' + node.next_node.data)
   end
 end

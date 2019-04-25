@@ -16,4 +16,13 @@ class NodeTest < Minitest::Test
     assert_equal 'plop', @node.data
     assert_nil @node.next_node
   end
+
+  def test_tail_method
+
+    assert_equal true, @node.tail?
+
+    @node.next_node = Node.new('pop')
+
+    assert_equal false, @node.tail?
+  end
 end
