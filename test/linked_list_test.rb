@@ -25,6 +25,23 @@ class LinkedListTest < Minitest::Test
     assert_equal 'doop', actual
     assert_instance_of Node, @linked_list.head
     assert_equal 'doop', @linked_list.head.data
+    assert_nil @linked_list.head.next_node
+  end
+
+  def test_count_method
+
+    assert_equal 0, @linked_list.count
+
+    @linked_list.append('doop')
+
+    assert_equal 1, @linked_list.count
+  end
+
+  def test_to_string_method
+    skip
+    actual = @linked_list.to_string
+
+    assert_equal 'doop', actual
   end
 end
 
