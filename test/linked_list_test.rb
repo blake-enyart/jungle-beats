@@ -26,6 +26,14 @@ class LinkedListTest < Minitest::Test
     assert_instance_of Node, @linked_list.head
     assert_equal 'doop', @linked_list.head.data
     assert_nil @linked_list.head.next_node
+
+    actual = @linked_list.append('deep')
+
+    assert_equal 'deep', actual
+    assert_instance_of Node, @linked_list.head
+    assert_equal 'doop', @linked_list.head.data
+    assert_instance_of Node, @linked_list.head.next_node
+    assert_equal 'deep', @linked_list.head.next_node.data
   end
 
   def test_count_method
