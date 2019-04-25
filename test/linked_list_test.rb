@@ -56,6 +56,11 @@ class LinkedListTest < Minitest::Test
     actual = @linked_list.to_string
 
     assert_equal 'doop', actual
+
+    @linked_list.append('deep')
+    actual = @linked_list.to_string
+
+    assert_equal 'doop deep', actual
   end
 end
 
