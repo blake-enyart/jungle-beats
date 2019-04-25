@@ -38,7 +38,10 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_to_string_method
-    skip
+
+    assert_nil @linked_list.to_string
+
+    @linked_list.append('doop')
     actual = @linked_list.to_string
 
     assert_equal 'doop', actual
