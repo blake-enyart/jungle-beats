@@ -43,6 +43,10 @@ class LinkedListTest < Minitest::Test
     @linked_list.append('doop')
 
     assert_equal 1, @linked_list.count
+
+    @linked_list.append('deep')
+
+    assert_equal 2, @linked_list.count
   end
 
   def test_to_string_method
