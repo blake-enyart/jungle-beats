@@ -98,6 +98,15 @@ class LinkedListTest < Minitest::Test
     assert_equal 'suu doop deep', actual
   end
 
+  def test_sad_path_prepend_method
+    assert_equal '', @linked_list.to_string
+
+    @linked_list.prepend('doop')
+    actual = @linked_list.to_string
+
+    assert_equal 'doop', actual
+  end
+
   def test_insert_method
     assert_equal '', @linked_list.to_string
 

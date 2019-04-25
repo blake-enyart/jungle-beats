@@ -41,7 +41,22 @@ class LinkedList
     self.head = node
   end
 
+  def insert(location, data)
+    node = Node.new(data)
+    prior_node = node_at(head, location - 1)
+    next_node = node_at(head, location)
+    prior_node.next_node = node
+    node.next_node = next_node
+    return node
+    node_at(location, node)
+  end
+
   private
+
+  def node_at(node, location, counter= 0)
+    return node if location == counter
+    node_at(node.next_node, location, counter += 1)
+  end
 
   def count_node(node, counter)
     return counter if node.tail?
