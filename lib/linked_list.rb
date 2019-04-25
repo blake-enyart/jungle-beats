@@ -28,6 +28,11 @@ class LinkedList
   end
 
   def to_string
-    @head.data if @head
+    string = ''
+    if @head && !@head.next_node
+      string << @head.data
+    elsif @head && @head.next_node
+      string << @head.data + ' ' + @head.next_node.data
+    end
   end
 end
