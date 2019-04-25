@@ -151,6 +151,48 @@ class LinkedListTest < Minitest::Test
 
     assert_equal expected, actual
   end
+
+  def test_includes_method
+    @linked_list.append('deep')
+    @linked_list.append('woo')
+    @linked_list.append('shi')
+    @linked_list.append('shu')
+    @linked_list.append('blop')
+
+    actual = @linked_list.includes?('deep')
+    expected = true
+
+    assert_equal expected, actual
+
+    actual = @linked_list.includes?('dep')
+    expected = false
+
+    assert_equal expected, actual
+  end
+
+  def test_pop_method
+    @linked_list.append('deep')
+    @linked_list.append('woo')
+    @linked_list.append('shi')
+    @linked_list.append('shu')
+    @linked_list.append('blop')
+
+    actual = @linked_list.pop
+    expected = 'blop'
+    actual_list = @linked_list.to_string
+    expected_list = 'deep woo shi shu'
+
+    assert_equal expected, actual
+    assert_equal expected_list, actual_list
+
+    actual = @linked_list.pop
+    expected = 'shu'
+    actual_list = @linked_list.to_string
+    expected_list = 'deep woo shi'
+
+    assert_equal expected, actual
+    assert_equal expected_list, actual_list
+  end
 end
 
 # > list.to_string
