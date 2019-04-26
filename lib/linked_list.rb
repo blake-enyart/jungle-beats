@@ -72,6 +72,13 @@ class LinkedList
     string.include?(data)
   end
 
+  def pop(node=head)
+    new_tail = node_at(head, count() - 2)
+    old_tail = new_tail.next_node
+    new_tail.next_node = nil
+    old_tail.data
+  end
+
   private
 
   def node_at(node, location, counter= 0)
